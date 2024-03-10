@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbcn2oo56flyw"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_fl6hx"]
+[ext_resource type="Texture2D" uid="uid://bym4daon416na" path="res://assets/png/lava.png" id="2_jbjr1"]
+[ext_resource type="PackedScene" uid="uid://dvs2blq4y28w7" path="res://scenes/jump_pickup.tscn" id="3_l424l"]
+[ext_resource type="PackedScene" uid="uid://di0y35kpo35fi" path="res://scenes/floating_text.tscn" id="3_xgbxo"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0noml"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nco7v"]
+albedo_texture = ExtResource("2_jbjr1")
+uv1_scale = Vector3(0.125, 0.125, 0.125)
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_erkf2"]
+material = SubResource("StandardMaterial3D_nco7v")
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dijcc"]
+size = Vector3(2.1748, 3.20898, 1.53418)
+
+[node name="Level2" type="Node3D"]
+script = ExtResource("1_fl6hx")
+
+[node name="LevelPhysical" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.91423, 0)
+size = Vector3(6.26855, 1, 3.27441)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.495541, -3.66131)
+size = Vector3(8.10522, 1, 1.1272)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13117, -6.4551)
+size = Vector3(7.84009, 1, 2.43457)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13117, -19.5023)
+size = Vector3(7.84009, 1, 2.43457)
+
+[node name="Lava" type="Area3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.5115, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelPhysical/Lava"]
+shape = SubResource("WorldBoundaryShape3D_0noml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelPhysical/Lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.7143)
+mesh = SubResource("PlaneMesh_erkf2")
+
+[node name="Floating Text" parent="LevelPhysical" instance=ExtResource("3_xgbxo")]
+label_text = "Press SHIFT to sprint"
+
+[node name="Coins" type="Node3D" parent="."]
+
+[node name="jump_pickup" parent="Coins" instance=ExtResource("3_l424l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3)
+
+[node name="LevelSwitcher" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.70708, -14.2961)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelSwitcher"]
+shape = SubResource("BoxShape3D_dijcc")
+
+[connection signal="body_entered" from="LevelPhysical/Lava" to="." method="lava_hit"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://di0y35kpo35fi"]
+
+[ext_resource type="Script" path="res://scripts/removeable_label.gd" id="1_dwbbv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ddimh"]
+size = Vector3(10.5042, 1, 6.43945)
+
+[node name="Floating Text" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.81145, -17.1322)
+script = ExtResource("1_dwbbv")
+
+[node name="Label3D" type="Label3D" parent="."]
+font_size = 180
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.22119, 0)
+shape = SubResource("BoxShape3D_ddimh")
+
+[connection signal="body_entered" from="." to="." method="player_passed"]

@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7xxl7tuxgnu1"]
+
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_i8lnd"]
+[ext_resource type="Material" uid="uid://dp2h318dgp2rh" path="res://materials/coin_placeholder.tres" id="2_2hb2u"]
+
+[sub_resource type="Curve3D" id="Curve3D_r75bm"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_hv3r8"]
+material = ExtResource("2_2hb2u")
+size = Vector3(0.125, 0.5, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v0mhl"]
+
+[node name="coin" type="Area3D"]
+script = ExtResource("1_i8lnd")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_r75bm")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D"]
+mesh = SubResource("BoxMesh_hv3r8")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_v0mhl")
+
+[connection signal="body_entered" from="." to="." method="pickup"]

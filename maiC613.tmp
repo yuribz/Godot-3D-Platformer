@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bajthphibu4sr"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_m1l7c"]
+[ext_resource type="Script" path="res://Player.gd" id="1_qd3li"]
+[ext_resource type="Texture2D" uid="uid://dw5bhritaamj2" path="res://awesome.png" id="2_qr2qh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2ofy"]
+albedo_texture = ExtResource("2_qr2qh")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bkewc"]
+material = SubResource("StandardMaterial3D_j2ofy")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n4aqa"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_m1l7c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_qd3li")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("BoxMesh_bkewc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("BoxShape3D_n4aqa")
+
+[node name="Neck" type="Node3D" parent="Player"]
+
+[node name="Camera3D" type="Camera3D" parent="Player/Neck"]
+transform = Transform3D(1, 0, 0, 0, 0.843072, 0.5378, 0, -0.5378, 0.843072, 0, 1.53953, 2.39597)
+
+[node name="Level" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.91423, 0)
+size = Vector3(14.7363, 1, 9.60767)

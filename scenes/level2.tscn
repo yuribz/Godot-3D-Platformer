@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhh7mikjmxy33"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_gam16"]
+[ext_resource type="PackedScene" uid="uid://dbcn2oo56flyw" path="res://scenes/level3.tscn" id="2_kjkde"]
+[ext_resource type="Texture2D" uid="uid://bym4daon416na" path="res://assets/png/lava.png" id="2_thl2w"]
+[ext_resource type="PackedScene" uid="uid://b7xxl7tuxgnu1" path="res://scenes/coin.tscn" id="3_aghcn"]
+[ext_resource type="PackedScene" uid="uid://di0y35kpo35fi" path="res://scenes/floating_text.tscn" id="4_ng2wv"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0noml"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nco7v"]
+albedo_texture = ExtResource("2_thl2w")
+uv1_scale = Vector3(0.125, 0.125, 0.125)
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_erkf2"]
+material = SubResource("StandardMaterial3D_nco7v")
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dijcc"]
+size = Vector3(2.1748, 3.20898, 1.53418)
+
+[node name="Level2" type="Node3D"]
+script = ExtResource("1_gam16")
+next_level = ExtResource("2_kjkde")
+
+[node name="LevelPhysical" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.91423, 0)
+size = Vector3(6.26855, 1, 9.60767)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.98102, -9.76159)
+size = Vector3(8.10522, 1, 6.58813)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.16531, -23.2563)
+size = Vector3(3.76929, 1, 17.5918)
+
+[node name="Lava" type="Area3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.5115, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelPhysical/Lava"]
+shape = SubResource("WorldBoundaryShape3D_0noml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelPhysical/Lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.7143)
+mesh = SubResource("PlaneMesh_erkf2")
+
+[node name="Floating Text" parent="LevelPhysical" instance=ExtResource("4_ng2wv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14271, -6.38622)
+label_text = "Touch coins to collect them"
+
+[node name="Coins" type="Node3D" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("3_aghcn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.756)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("3_aghcn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.63266)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("3_aghcn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.6153)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("3_aghcn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.3647)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("3_aghcn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.8893)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("3_aghcn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23.2114)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("3_aghcn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.8336)
+
+[node name="LevelSwitcher" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.7066)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelSwitcher"]
+shape = SubResource("BoxShape3D_dijcc")
+
+[connection signal="body_entered" from="LevelPhysical/Lava" to="." method="lava_hit"]
+[connection signal="body_entered" from="LevelSwitcher" to="." method="change_level"]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bajthphibu4sr"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_k8h5c"]
+[ext_resource type="PackedScene" uid="uid://csoh6wrcikxfv" path="res://scenes/player.tscn" id="2_c1nqh"]
+[ext_resource type="PackedScene" uid="uid://chbraxppnyv4j" path="res://scenes/level1.tscn" id="4_e01yd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s4ix2"]
+sky_top_color = Color(0.831373, 0.662745, 0.909804, 1)
+sky_horizon_color = Color(0.627451, 0.611765, 0.933333, 1)
+sky_curve = 0.643063
+ground_bottom_color = Color(1, 0.662745, 0.333333, 1)
+ground_horizon_color = Color(0.768627, 0.74902, 0.968627, 1)
+ground_curve = 0.00757859
+
+[sub_resource type="Sky" id="Sky_5ioi1"]
+sky_material = SubResource("ProceduralSkyMaterial_s4ix2")
+
+[sub_resource type="Environment" id="Environment_660xy"]
+background_mode = 2
+sky = SubResource("Sky_5ioi1")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_k8h5c")
+first_level = ExtResource("4_e01yd")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_660xy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999848, -0.0174517, -0.000152299, 0, -0.00872653, 0.999962, -0.0174524, -0.99981, -0.0087252, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_c1nqh")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 74.0
+offset_top = 84.0
+offset_right = 300.0
+offset_bottom = 163.0
+theme_override_font_sizes/font_size = 32
+text = "Sample Text"
