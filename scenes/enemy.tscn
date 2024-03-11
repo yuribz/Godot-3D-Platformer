@@ -33,6 +33,7 @@ shape = SubResource("ConvexPolygonShape3D_x0g1u")
 [node name="Bullets" type="Node3D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="body_entered" from="View Cone" to="." method="player_spotted"]
 [connection signal="body_exited" from="View Cone" to="." method="player_left"]

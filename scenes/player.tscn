@@ -31,3 +31,9 @@ shape = SubResource("SeparationRayShape3D_6e7f0")
 spring_length = 3.0
 
 [node name="Camera3D" type="Camera3D" parent="Neck/SpringArm3D"]
+
+[node name="Damage Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="Damage Timer" to="." method="damage_over"]

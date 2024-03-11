@@ -8,11 +8,12 @@ extends Node3D
 @onready var label = $CanvasLayer/Label
 @onready var health_bar = $"CanvasLayer/Health Bar"
 @onready var health_bar_progress = health_bar.get_node("Health Bar Progress")
-
-
+@onready var window = get_tree().get_root()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	
 	level = first_level.instantiate()
 	add_child(level)
 	
@@ -20,6 +21,8 @@ func _ready():
 	
 	level.lava.connect(player.on_lava)
 	level.level_changed.connect(level_changed)
+	
+	window.title = "Awesome Adventures v0.1"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

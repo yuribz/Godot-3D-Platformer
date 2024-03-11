@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 
 const SPEED = 5.0
+const BULLET_DAMAGE = 3.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -35,15 +36,24 @@ func player_spotted(body):
 	timer.start()
 
 func shoot_bullet():
+	# create new bullet and set its position to that of enemy
 	var bul_instance = bullet.instantiate()
+	bul_instance.position = global_position
 	
+	# connect the player collision signal
+	bul_instance.body_entered.connect(bullet_hit)
+	
+	# add it to the bullet list and the tree
 	bullets_shot.append(bul_instance)
-	bul_instance.position = position
 	get_tree().root.add_child(bul_instance)
 	
 
 func player_left(body):
 	print("Goodbye enemy!")
 	timer.stop()
+	
+func bullet_hit(body):
+	if body.name == "Player":
+		body.get_damage(BULLET_DAMAGE)
 
 

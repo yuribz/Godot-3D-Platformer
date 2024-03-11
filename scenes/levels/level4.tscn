@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5xok6r3mrare"]
+[gd_scene load_steps=9 format=3 uid="uid://c5xok6r3mrare"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_j1kv4"]
 [ext_resource type="Material" uid="uid://dbpbpcs1vrmu7" path="res://materials/ground_material.tres" id="2_15ey6"]
 [ext_resource type="PlaneMesh" uid="uid://cbwxvsrx0lasf" path="res://assets/meshes/lava_mesh.tres" id="3_5lm2j"]
+[ext_resource type="PackedScene" uid="uid://di0y35kpo35fi" path="res://scenes/floating_text.tscn" id="4_k6yti"]
 [ext_resource type="PackedScene" uid="uid://c3c28ojlngjnx" path="res://scenes/enemy.tscn" id="5_74iro"]
 [ext_resource type="PackedScene" uid="uid://bvee6hqj0cct" path="res://scenes/level_switcher.tscn" id="6_vsj7p"]
 
@@ -60,6 +61,10 @@ shape = SubResource("WorldBoundaryShape3D_0noml")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LevelPhysical/Lava"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.7143)
 mesh = ExtResource("3_5lm2j")
+
+[node name="Floating Text" parent="LevelPhysical" instance=ExtResource("4_k6yti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3696, -4.91287)
+label_text = "Watch out for enemies!"
 
 [node name="Coins" type="Node3D" parent="."]
 

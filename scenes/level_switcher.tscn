@@ -1,9 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvee6hqj0cct"]
+[gd_scene load_steps=6 format=3 uid="uid://bvee6hqj0cct"]
+
+[ext_resource type="Script" path="res://scripts/level_switcher.gd" id="1_sxgvn"]
+[ext_resource type="Material" uid="uid://b6nxyxlpfsvhh" path="res://materials/level_switcher.tres" id="2_0e1h3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dijcc"]
 size = Vector3(2.1748, 3.20898, 1.53418)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_1t8vv"]
+material = ExtResource("2_0e1h3")
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vsy6u"]
+material = ExtResource("2_0e1h3")
+flip_faces = true
+cap_top = false
+cap_bottom = false
+
 [node name="LevelSwitcher" type="Area3D"]
+script = ExtResource("1_sxgvn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_dijcc")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Flames" type="Node3D" parent="."]
+
+[node name="Flames Outside" type="MeshInstance3D" parent="Flames"]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_1t8vv")
+skeleton = NodePath("../..")
+
+[node name="Flames Inside" type="MeshInstance3D" parent="Flames"]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_vsy6u")
+skeleton = NodePath("../..")
+
+[connection signal="timeout" from="Timer" to="." method="change_direction"]

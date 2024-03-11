@@ -9,6 +9,9 @@ const TENTH_MORE = 1.1
 
 @onready var neck = $Neck
 @onready var camera = $Neck/SpringArm3D/Camera3D
+@onready var mesh = $MeshInstance3D
+@onready var dmg_timer = $"Damage Timer"
+@onready var dmg_overlay = preload("res://materials/damage_overlay.tres")
 #@onready var level = get_parent().get_node(get_parent().first_level_name)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -56,6 +59,9 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, (SPEED + boost))
 		velocity.z = move_toward(velocity.z, 0, (SPEED + boost))
+		
+	if hp <= 0:
+		death()
 
 	move_and_slide()
 
@@ -74,4 +80,17 @@ func _input(event):
 		spring.spring_length = clamp(clamp_length, 2, 10)
 			
 func on_lava():
+	death()
+
+func get_damage(damage):
+	hp -= damage
+	dmg_timer.start()
+	mesh.material_overlay = dmg_overlay
+
+func damage_over():
+	mesh.material_overlay = null
+
+	
+func death():
 	position = Vector3.ZERO
+	hp = max_hp
