@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bajthphibu4sr"]
+[gd_scene load_steps=8 format=3 uid="uid://bajthphibu4sr"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_k8h5c"]
 [ext_resource type="PackedScene" uid="uid://csoh6wrcikxfv" path="res://scenes/player.tscn" id="2_c1nqh"]
-[ext_resource type="PackedScene" uid="uid://chbraxppnyv4j" path="res://scenes/level1.tscn" id="4_e01yd"]
+[ext_resource type="PackedScene" uid="uid://chbraxppnyv4j" path="res://scenes/levels/level1.tscn" id="4_e01yd"]
+[ext_resource type="Theme" uid="uid://cta28n0fo3d04" path="res://themes/health_bar.tres" id="4_f18aa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s4ix2"]
 sky_top_color = Color(0.831373, 0.662745, 0.909804, 1)
@@ -20,6 +21,9 @@ background_mode = 2
 sky = SubResource("Sky_5ioi1")
 tonemap_mode = 2
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.921569, 0.65098, 0.27451, 1)
+volumetric_fog_emission = Color(0.176471, 0.176471, 0.176471, 1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_k8h5c")
@@ -34,10 +38,53 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_c1nqh")]
 
-[node name="Label" type="Label" parent="."]
-offset_left = 74.0
-offset_top = 84.0
-offset_right = 300.0
-offset_bottom = 163.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.038
+anchor_top = 0.676
+anchor_right = 0.203
+anchor_bottom = 0.745
+offset_left = 0.223999
+offset_top = -0.0480347
+offset_right = 0.143982
+offset_bottom = 0.23996
 theme_override_font_sizes/font_size = 32
 text = "Sample Text"
+
+[node name="curlevel" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.038
+anchor_top = 0.676
+anchor_right = 0.203
+anchor_bottom = 0.745
+offset_left = -4.776
+offset_top = -407.048
+offset_right = -4.85599
+offset_bottom = -406.76
+theme_override_font_sizes/font_size = 32
+text = "Sample Text"
+
+[node name="Health Bar" type="CanvasGroup" parent="CanvasLayer"]
+position = Vector2(44, 571)
+
+[node name="Health Bar Progress" type="ProgressBar" parent="CanvasLayer/Health Bar"]
+anchors_preset = -1
+anchor_right = 0.265
+anchor_bottom = 0.042
+offset_right = 258.0
+offset_bottom = 27.0
+theme = ExtResource("4_f18aa")
+value = 32.0
+rounded = true
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="HP Label" type="Label" parent="CanvasLayer/Health Bar"]
+offset_right = 255.0
+offset_bottom = 26.0
+text = "HP/MAXHP"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

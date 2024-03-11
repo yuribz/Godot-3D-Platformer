@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyhc7lirs57iy"]
+
+[ext_resource type="Material" uid="uid://dp2h318dgp2rh" path="res://materials/coin_placeholder.tres" id="1_ffdq0"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sm8l3"]
+material = ExtResource("1_ffdq0")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mck1g"]
+radius = 0.01
+
+[node name="Bullet" type="Area3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_sm8l3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_mck1g")

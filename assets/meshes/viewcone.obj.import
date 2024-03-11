@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://brxj51vovuqm2"
+path="res://.godot/imported/viewcone.obj-487a82fb52875a8fae67ef6c60808d64.mesh"
+
+[deps]
+
+files=["res://.godot/imported/viewcone.obj-487a82fb52875a8fae67ef6c60808d64.mesh"]
+
+source_file="res://assets/meshes/viewcone.obj"
+dest_files=["res://.godot/imported/viewcone.obj-487a82fb52875a8fae67ef6c60808d64.mesh", "res://.godot/imported/viewcone.obj-487a82fb52875a8fae67ef6c60808d64.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

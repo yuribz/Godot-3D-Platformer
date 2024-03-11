@@ -20,5 +20,7 @@ func lava_hit(body):
 	lava.emit()
 	
 func change_level(body):
-	level_changed.emit()
 	queue_free()
+	body.position = Vector3.ZERO
+	level_changed.emit()
+	

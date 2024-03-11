@@ -9,16 +9,21 @@ const TENTH_MORE = 1.1
 
 @onready var neck = $Neck
 @onready var camera = $Neck/SpringArm3D/Camera3D
-@onready var level = get_parent().get_node(get_parent().first_level_name)
+#@onready var level = get_parent().get_node(get_parent().first_level_name)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var jumps = 2
-var coins : int = 0
+var jumps : int
+var coins : int
 var boost : float
+var hp : float
+var max_hp : float
 
-func ready():
-	pass
+func _ready():
+	jumps = 2
+	coins = 0
+	hp = 32
+	max_hp = 32
 
 func _physics_process(delta):
 	# Add the gravity.

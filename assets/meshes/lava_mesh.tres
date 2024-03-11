@@ -1,0 +1,12 @@
+[gd_resource type="PlaneMesh" load_steps=3 format=3 uid="uid://cbwxvsrx0lasf"]
+
+[ext_resource type="Texture2D" uid="uid://bym4daon416na" path="res://assets/png/lava.png" id="1_h40ea"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nco7v"]
+albedo_texture = ExtResource("1_h40ea")
+uv1_scale = Vector3(0.125, 0.125, 0.125)
+uv1_triplanar = true
+
+[resource]
+material = SubResource("StandardMaterial3D_nco7v")
+size = Vector2(1000, 1000)

@@ -1,23 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://chbraxppnyv4j"]
+[gd_scene load_steps=8 format=3 uid="uid://chbraxppnyv4j"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_0bhsl"]
-[ext_resource type="Texture2D" uid="uid://bym4daon416na" path="res://assets/png/lava.png" id="1_lg3ck"]
-[ext_resource type="PackedScene" uid="uid://bhh7mikjmxy33" path="res://scenes/level2.tscn" id="2_apa4i"]
+[ext_resource type="PackedScene" uid="uid://bhh7mikjmxy33" path="res://scenes/levels/level2.tscn" id="2_apa4i"]
+[ext_resource type="Material" uid="uid://dbpbpcs1vrmu7" path="res://materials/ground_material.tres" id="3_e3p81"]
+[ext_resource type="PlaneMesh" uid="uid://cbwxvsrx0lasf" path="res://assets/meshes/lava_mesh.tres" id="3_jmx7o"]
 [ext_resource type="PackedScene" uid="uid://di0y35kpo35fi" path="res://scenes/floating_text.tscn" id="4_tyyry"]
+[ext_resource type="PackedScene" uid="uid://bvee6hqj0cct" path="res://scenes/level_switcher.tscn" id="6_sgbv1"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0noml"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nco7v"]
-albedo_texture = ExtResource("1_lg3ck")
-uv1_scale = Vector3(0.125, 0.125, 0.125)
-uv1_triplanar = true
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_erkf2"]
-material = SubResource("StandardMaterial3D_nco7v")
-size = Vector2(100, 100)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_dijcc"]
-size = Vector3(2.1748, 3.20898, 1.53418)
 
 [node name="Level1" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00972271, 0.0209012, 0.000236511)
@@ -30,14 +20,17 @@ use_collision = true
 [node name="CSGBox3D" type="CSGBox3D" parent="LevelPhysical"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.91423, 0)
 size = Vector3(5.63086, 1, 5.1377)
+material = ExtResource("3_e3p81")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="LevelPhysical"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.49939, -0.997708, -1.27778)
 size = Vector3(2.60571, 1, 6.58813)
+material = ExtResource("3_e3p81")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="LevelPhysical"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.92324, 0.90898, -8.66182)
 size = Vector3(3.76929, 1, 3.0293)
+material = ExtResource("3_e3p81")
 
 [node name="Lava" type="Area3D" parent="LevelPhysical"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.46302, 0)
@@ -47,7 +40,7 @@ shape = SubResource("WorldBoundaryShape3D_0noml")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LevelPhysical/Lava"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.7143)
-mesh = SubResource("PlaneMesh_erkf2")
+mesh = ExtResource("3_jmx7o")
 
 [node name="Floating Text" parent="LevelPhysical" instance=ExtResource("4_tyyry")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.95555, 2.35177, -0.16623)
@@ -55,11 +48,8 @@ label_text = "Press SPACE to jump"
 
 [node name="Coins" type="Node3D" parent="."]
 
-[node name="LevelSwitcher" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.80386, 3.04463, -8.87926)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelSwitcher"]
-shape = SubResource("BoxShape3D_dijcc")
+[node name="LevelSwitcher" parent="." instance=ExtResource("6_sgbv1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.89222, 3.06526, -9.19131)
 
 [connection signal="body_entered" from="LevelPhysical/Lava" to="." method="lava_hit"]
 [connection signal="body_entered" from="LevelSwitcher" to="." method="change_level"]

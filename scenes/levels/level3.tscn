@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://dbcn2oo56flyw"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_ikgjc"]
+[ext_resource type="Material" uid="uid://dbpbpcs1vrmu7" path="res://materials/ground_material.tres" id="2_7s4uh"]
+[ext_resource type="PackedScene" uid="uid://c5xok6r3mrare" path="res://scenes/levels/level4.tscn" id="2_jabk5"]
+[ext_resource type="PlaneMesh" uid="uid://cbwxvsrx0lasf" path="res://assets/meshes/lava_mesh.tres" id="3_llfcr"]
+[ext_resource type="PackedScene" uid="uid://di0y35kpo35fi" path="res://scenes/floating_text.tscn" id="4_hf4s2"]
+[ext_resource type="Script" path="res://scripts/static_label.gd" id="5_nuy31"]
+[ext_resource type="PackedScene" uid="uid://dvs2blq4y28w7" path="res://scenes/jump_pickup.tscn" id="6_1bmuk"]
+[ext_resource type="PackedScene" uid="uid://bvee6hqj0cct" path="res://scenes/level_switcher.tscn" id="8_j4rkh"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0noml"]
+
+[node name="Level3" type="Node3D"]
+script = ExtResource("1_ikgjc")
+next_level = ExtResource("2_jabk5")
+
+[node name="LevelPhysical" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.91423, 0)
+size = Vector3(6.26855, 1, 3.27441)
+material = ExtResource("2_7s4uh")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.495541, -3.66131)
+size = Vector3(8.10522, 1, 1.1272)
+material = ExtResource("2_7s4uh")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13117, -6.4551)
+size = Vector3(7.84009, 1, 2.43457)
+material = ExtResource("2_7s4uh")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13117, -19.5023)
+size = Vector3(7.84009, 1, 2.43457)
+material = ExtResource("2_7s4uh")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.13117, -24.5944)
+size = Vector3(7.84009, 1, 2.43457)
+material = ExtResource("2_7s4uh")
+
+[node name="Lava" type="Area3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.5115, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelPhysical/Lava"]
+shape = SubResource("WorldBoundaryShape3D_0noml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelPhysical/Lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.7143)
+mesh = ExtResource("3_llfcr")
+
+[node name="Floating Text" parent="LevelPhysical" instance=ExtResource("4_hf4s2")]
+label_text = "Press SHIFT to sprint"
+
+[node name="Floating Text2" parent="LevelPhysical" instance=ExtResource("4_hf4s2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.18801, 1.31944, 1.28315)
+script = ExtResource("5_nuy31")
+label_text = "The blue coins reload your jumps!"
+
+[node name="Coins" type="Node3D" parent="."]
+
+[node name="jump_pickup" parent="Coins" instance=ExtResource("6_1bmuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3)
+
+[node name="LevelSwitcher" parent="." instance=ExtResource("8_j4rkh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.30545, -27.5159)
+
+[connection signal="body_entered" from="LevelPhysical/Lava" to="." method="lava_hit"]
+[connection signal="body_entered" from="LevelSwitcher" to="." method="change_level"]
