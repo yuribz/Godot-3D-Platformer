@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bajthphibu4sr"]
+[gd_scene load_steps=9 format=3 uid="uid://bajthphibu4sr"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_k8h5c"]
 [ext_resource type="PackedScene" uid="uid://csoh6wrcikxfv" path="res://scenes/player.tscn" id="2_c1nqh"]
 [ext_resource type="PackedScene" uid="uid://chbraxppnyv4j" path="res://scenes/levels/level1.tscn" id="4_e01yd"]
 [ext_resource type="Theme" uid="uid://cta28n0fo3d04" path="res://themes/health_bar.tres" id="4_f18aa"]
+[ext_resource type="AudioStream" uid="uid://k4jccp5nj22o" path="res://assets/sound/Monkeys Spinning Monkeys.mp3" id="5_fyacy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s4ix2"]
 sky_top_color = Color(0.831373, 0.662745, 0.909804, 1)
@@ -88,3 +89,8 @@ text = "HP/MAXHP"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fyacy")
+volume_db = -10.0
+autoplay = true
