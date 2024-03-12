@@ -32,7 +32,6 @@ func _physics_process(delta):
 	move_and_slide()
 
 func player_spotted(body):
-	print("Player spotted!")
 	timer.start()
 
 func shoot_bullet():
@@ -49,7 +48,6 @@ func shoot_bullet():
 	
 
 func player_left(body):
-	print("Goodbye enemy!")
 	timer.stop()
 	
 func bullet_hit(body):

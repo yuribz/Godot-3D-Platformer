@@ -42,7 +42,7 @@ shape = SubResource("WorldBoundaryShape3D_0noml")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.7143)
 mesh = ExtResource("4_l6cr7")
 
-[node name="Floating Text" parent="LevelPhysical" instance=ExtResource("5_bpb6i")]
+[node name="Collect Coins" parent="LevelPhysical" instance=ExtResource("5_bpb6i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14271, -6.38622)
 label_text = "Touch coins to collect them"
 

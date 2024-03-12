@@ -62,7 +62,7 @@ shape = SubResource("WorldBoundaryShape3D_0noml")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.7143)
 mesh = ExtResource("3_5lm2j")
 
-[node name="Floating Text" parent="LevelPhysical" instance=ExtResource("4_k6yti")]
+[node name="Avoid Enemies!" parent="LevelPhysical" instance=ExtResource("4_k6yti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3696, -4.91287)
 label_text = "Watch out for enemies!"
 

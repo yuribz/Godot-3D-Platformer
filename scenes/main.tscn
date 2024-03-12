@@ -1,37 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://bajthphibu4sr"]
+[gd_scene load_steps=7 format=3 uid="uid://bajthphibu4sr"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_k8h5c"]
 [ext_resource type="PackedScene" uid="uid://csoh6wrcikxfv" path="res://scenes/player.tscn" id="2_c1nqh"]
+[ext_resource type="Environment" uid="uid://cd3meimcqefx7" path="res://environments/underworld.tres" id="3_s04wm"]
 [ext_resource type="PackedScene" uid="uid://chbraxppnyv4j" path="res://scenes/levels/level1.tscn" id="4_e01yd"]
 [ext_resource type="Theme" uid="uid://cta28n0fo3d04" path="res://themes/health_bar.tres" id="4_f18aa"]
 [ext_resource type="AudioStream" uid="uid://k4jccp5nj22o" path="res://assets/sound/Monkeys Spinning Monkeys.mp3" id="5_fyacy"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s4ix2"]
-sky_top_color = Color(0.831373, 0.662745, 0.909804, 1)
-sky_horizon_color = Color(0.627451, 0.611765, 0.933333, 1)
-sky_curve = 0.643063
-ground_bottom_color = Color(1, 0.662745, 0.333333, 1)
-ground_horizon_color = Color(0.768627, 0.74902, 0.968627, 1)
-ground_curve = 0.00757859
-
-[sub_resource type="Sky" id="Sky_5ioi1"]
-sky_material = SubResource("ProceduralSkyMaterial_s4ix2")
-
-[sub_resource type="Environment" id="Environment_660xy"]
-background_mode = 2
-sky = SubResource("Sky_5ioi1")
-tonemap_mode = 2
-glow_enabled = true
-volumetric_fog_enabled = true
-volumetric_fog_albedo = Color(0.921569, 0.65098, 0.27451, 1)
-volumetric_fog_emission = Color(0.176471, 0.176471, 0.176471, 1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_k8h5c")
 first_level = ExtResource("4_e01yd")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_660xy")
+environment = ExtResource("3_s04wm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.999848, -0.0174517, -0.000152299, 0, -0.00872653, 0.999962, -0.0174524, -0.99981, -0.0087252, 0, 0, 0)

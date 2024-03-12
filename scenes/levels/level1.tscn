@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://chbraxppnyv4j"]
+[gd_scene load_steps=9 format=3 uid="uid://chbraxppnyv4j"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_0bhsl"]
 [ext_resource type="PackedScene" uid="uid://bhh7mikjmxy33" path="res://scenes/levels/level2.tscn" id="2_apa4i"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bvee6hqj0cct" path="res://scenes/level_switcher.tscn" id="6_sgbv1"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0noml"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ddimh"]
+size = Vector3(10.5042, 1, 6.43945)
 
 [node name="Level1" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00972271, 0.0209012, 0.000236511)
@@ -42,9 +45,23 @@ shape = SubResource("WorldBoundaryShape3D_0noml")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.7143)
 mesh = ExtResource("3_jmx7o")
 
-[node name="Floating Text" parent="LevelPhysical" instance=ExtResource("4_tyyry")]
+[node name="Press SPACE" parent="LevelPhysical" instance=ExtResource("4_tyyry")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.95555, 2.35177, -0.16623)
 label_text = "Press SPACE to jump"
+
+[node name="Welcome!" type="Area3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.867164, 4.06803, -6.05002)
+
+[node name="Label3D" type="Label3D" parent="LevelPhysical/Welcome!"]
+billboard = 1
+modulate = Color(0.992157, 0.32549, 0.458824, 1)
+text = "Welcome to 
+Awesome Adventure 3D!"
+font_size = 180
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelPhysical/Welcome!"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.22119, 0)
+shape = SubResource("BoxShape3D_ddimh")
 
 [node name="Coins" type="Node3D" parent="."]
 
@@ -52,4 +69,5 @@ label_text = "Press SPACE to jump"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.89222, 3.06526, -9.19131)
 
 [connection signal="body_entered" from="LevelPhysical/Lava" to="." method="lava_hit"]
+[connection signal="body_entered" from="LevelPhysical/Welcome!" to="LevelPhysical/Welcome!" method="player_passed"]
 [connection signal="body_entered" from="LevelSwitcher" to="." method="change_level"]

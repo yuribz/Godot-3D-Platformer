@@ -53,10 +53,10 @@ shape = SubResource("WorldBoundaryShape3D_0noml")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.7143)
 mesh = ExtResource("3_llfcr")
 
-[node name="Floating Text" parent="LevelPhysical" instance=ExtResource("4_hf4s2")]
+[node name="Press Shift!" parent="LevelPhysical" instance=ExtResource("4_hf4s2")]
 label_text = "Press SHIFT to sprint"
 
-[node name="Floating Text2" parent="LevelPhysical" instance=ExtResource("4_hf4s2")]
+[node name="Blue Coins" parent="LevelPhysical" instance=ExtResource("4_hf4s2")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.18801, 1.31944, 1.28315)
 script = ExtResource("5_nuy31")
 label_text = "The blue coins reload your jumps!"
