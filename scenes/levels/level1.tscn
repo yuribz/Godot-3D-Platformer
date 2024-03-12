@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://chbraxppnyv4j"]
 
-[ext_resource type="Script" path="res://scripts/level.gd" id="1_0bhsl"]
+[ext_resource type="Script" path="res://scripts/level objects/level.gd" id="1_jbt14"]
 [ext_resource type="PackedScene" uid="uid://bhh7mikjmxy33" path="res://scenes/levels/level2.tscn" id="2_apa4i"]
 [ext_resource type="Material" uid="uid://dbpbpcs1vrmu7" path="res://materials/ground_material.tres" id="3_e3p81"]
 [ext_resource type="PlaneMesh" uid="uid://cbwxvsrx0lasf" path="res://assets/meshes/lava_mesh.tres" id="3_jmx7o"]
@@ -14,7 +14,7 @@ size = Vector3(10.5042, 1, 6.43945)
 
 [node name="Level1" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00972271, 0.0209012, 0.000236511)
-script = ExtResource("1_0bhsl")
+script = ExtResource("1_jbt14")
 next_level = ExtResource("2_apa4i")
 
 [node name="LevelPhysical" type="CSGCombiner3D" parent="."]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c3c28ojlngjnx"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_wtojv"]
+[ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_wtojv"]
 [ext_resource type="Texture2D" uid="uid://bdd80orjm4g1j" path="res://assets/png/trollface.png" id="1_ysv3y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdslb"]

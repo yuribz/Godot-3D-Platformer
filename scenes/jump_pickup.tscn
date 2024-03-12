@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dvs2blq4y28w7"]
 
-[ext_resource type="Script" path="res://scripts/jump_pickup.gd" id="1_0rwlc"]
+[ext_resource type="Script" path="res://scripts/pickups/jump_pickup.gd" id="1_0rwlc"]
 [ext_resource type="Material" uid="uid://dp2h318dgp2rh" path="res://materials/coin_placeholder.tres" id="2_50cc5"]
 
 [sub_resource type="Curve3D" id="Curve3D_r75bm"]

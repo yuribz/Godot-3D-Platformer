@@ -1,11 +1,10 @@
-extends Area3D
+class_name Pickup extends Area3D
 
 signal picked_up
 @onready var path = $Path3D/PathFollow3D
 #@onready var label = $Path3D/PathFollow3D/Label3D
 @onready var mesh = $Path3D/PathFollow3D/MeshInstance3D
 @onready var particles = $Path3D/PathFollow3D/CPUParticles3D
-@onready var timer = $Timer
 
 var direction = 1
 
@@ -26,14 +25,3 @@ func _process(delta):
 		direction = 1
 		
 	#label.text = str(snapped(path.progress_ratio, 0.01))
-	
-
-func pickup(body):
-	if visible:
-		timer.start()
-		picked_up.emit()
-		body.jumps = 2
-		visible = false
-	
-func respawn():
-	visible = true

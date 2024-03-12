@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c5xok6r3mrare"]
 
-[ext_resource type="Script" path="res://scripts/level.gd" id="1_j1kv4"]
+[ext_resource type="Script" path="res://scripts/level objects/level.gd" id="1_f8lwr"]
 [ext_resource type="Material" uid="uid://dbpbpcs1vrmu7" path="res://materials/ground_material.tres" id="2_15ey6"]
 [ext_resource type="PlaneMesh" uid="uid://cbwxvsrx0lasf" path="res://assets/meshes/lava_mesh.tres" id="3_5lm2j"]
 [ext_resource type="PackedScene" uid="uid://di0y35kpo35fi" path="res://scenes/floating_text.tscn" id="4_k6yti"]
@@ -17,7 +17,7 @@ _data = {
 point_count = 3
 
 [node name="Level4" type="Node3D"]
-script = ExtResource("1_j1kv4")
+script = ExtResource("1_f8lwr")
 
 [node name="LevelPhysical" type="CSGCombiner3D" parent="."]
 use_collision = true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bhh7mikjmxy33"]
 
-[ext_resource type="Script" path="res://scripts/level.gd" id="1_i81rs"]
+[ext_resource type="Script" path="res://scripts/level objects/level.gd" id="1_d7vht"]
 [ext_resource type="PackedScene" uid="uid://dbcn2oo56flyw" path="res://scenes/levels/level3.tscn" id="2_jyyvt"]
 [ext_resource type="Material" uid="uid://dbpbpcs1vrmu7" path="res://materials/ground_material.tres" id="3_jp2ka"]
 [ext_resource type="PlaneMesh" uid="uid://cbwxvsrx0lasf" path="res://assets/meshes/lava_mesh.tres" id="4_l6cr7"]
@@ -11,7 +11,7 @@
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0noml"]
 
 [node name="Level2" type="Node3D"]
-script = ExtResource("1_i81rs")
+script = ExtResource("1_d7vht")
 next_level = ExtResource("2_jyyvt")
 
 [node name="LevelPhysical" type="CSGCombiner3D" parent="."]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvee6hqj0cct"]
 
-[ext_resource type="Script" path="res://scripts/level_switcher.gd" id="1_sxgvn"]
+[ext_resource type="Script" path="res://scripts/level objects/level_switcher.gd" id="1_sxgvn"]
 [ext_resource type="Material" uid="uid://b6nxyxlpfsvhh" path="res://materials/level_switcher.tres" id="2_0e1h3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dijcc"]

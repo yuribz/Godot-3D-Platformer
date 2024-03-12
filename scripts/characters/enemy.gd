@@ -22,7 +22,6 @@ func _physics_process(delta):
 	
 	for bul in bullets_shot:
 		
-		
 		bul.position.x += delta * 10
 		
 		if bul.position.x > 20:
@@ -54,4 +53,8 @@ func bullet_hit(body):
 	if body.name == "Player":
 		body.get_damage(BULLET_DAMAGE)
 
+func _exit_tree():
+	for bul in bullets_shot:
+		bul.queue_free()
+	bullets_shot.clear()
 
