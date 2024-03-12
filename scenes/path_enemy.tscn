@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://c3c28ojlngjnx"]
 
-[ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_wtojv"]
-[ext_resource type="Texture2D" uid="uid://bdd80orjm4g1j" path="res://assets/png/trollface.png" id="1_ysv3y"]
+[ext_resource type="Script" path="res://scripts/characters/path_enemy.gd" id="1_ddtlg"]
+[ext_resource type="Texture2D" uid="uid://bdd80orjm4g1j" path="res://assets/png/trollface.png" id="2_m8h60"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdslb"]
-albedo_texture = ExtResource("1_ysv3y")
+albedo_texture = ExtResource("2_m8h60")
 uv1_scale = Vector3(3, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_3s2jh"]
@@ -16,7 +16,7 @@ material = SubResource("StandardMaterial3D_fdslb")
 points = PackedVector3Array(-1.25788, 0.0342934, 0.0342934, 1.32646, -0.358639, -0.977707, 1.32646, 0.392844, 0.967707, 1.37078, 0.569863, -0.889297, 1.32646, -0.977707, -0.358639, 1.32646, -0.491254, 0.923502, 1.32646, 0.923502, -0.491254, 1.37078, 0.790887, 0.702478, -1.2228, -0.0431975, -0.0431975, 1.37078, -0.889297, 0.569863, 1.32646, -0.624068, -0.845092, 1.28241, 0.437049, -0.933502, 1.28241, -0.933502, 0.437049, 1.32646, 0.967707, 0.392844, -1.23862, -0.0436917, 0.0336917, -1.23862, 0.0336917, -0.0436917, 1.32646, -0.845092, -0.624068, 1.19376, 0.746683, -0.668273, 1.19376, -0.668273, 0.746683, 0.903626, -0.0442767, 0.819988, 0.903626, 0.819988, -0.0442767, 1.19376, 0.614068, 0.790887, -1.18544, 0.0740105, -0.005, -1.18544, -0.005, 0.0740105, 1.19376, 0.790887, 0.614068, 0.705817, -0.749978, 0.0342001, 0.705817, 0.0342001, -0.749978, 1.23808, 0.569863, -0.845092, 1.23808, -0.845092, 0.569863, 1.37078, 0.702478, 0.790887, 1.23808, -0.933502, -0.402844, 1.23808, -0.402844, -0.933502)
 
 [node name="Enemy" type="CharacterBody3D"]
-script = ExtResource("1_wtojv")
+script = ExtResource("1_ddtlg")
 
 [node name="Enemy Body" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_3s2jh")

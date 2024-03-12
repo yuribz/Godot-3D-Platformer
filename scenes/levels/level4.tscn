@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5xok6r3mrare"]
+[gd_scene load_steps=10 format=3 uid="uid://c5xok6r3mrare"]
 
 [ext_resource type="Script" path="res://scripts/level objects/level.gd" id="1_f8lwr"]
 [ext_resource type="Material" uid="uid://dbpbpcs1vrmu7" path="res://materials/ground_material.tres" id="2_15ey6"]
+[ext_resource type="PackedScene" uid="uid://bbbw7iq0ovq3w" path="res://scenes/levels/level5.tscn" id="2_83d6g"]
 [ext_resource type="PlaneMesh" uid="uid://cbwxvsrx0lasf" path="res://assets/meshes/lava_mesh.tres" id="3_5lm2j"]
 [ext_resource type="PackedScene" uid="uid://di0y35kpo35fi" path="res://scenes/floating_text.tscn" id="4_k6yti"]
-[ext_resource type="PackedScene" uid="uid://c3c28ojlngjnx" path="res://scenes/enemy.tscn" id="5_74iro"]
 [ext_resource type="PackedScene" uid="uid://bvee6hqj0cct" path="res://scenes/level_switcher.tscn" id="6_vsj7p"]
+[ext_resource type="PackedScene" uid="uid://c3c28ojlngjnx" path="res://scenes/path_enemy.tscn" id="7_38ck0"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0noml"]
 
@@ -18,6 +19,7 @@ point_count = 3
 
 [node name="Level4" type="Node3D"]
 script = ExtResource("1_f8lwr")
+next_level = ExtResource("2_83d6g")
 
 [node name="LevelPhysical" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -81,6 +83,7 @@ curve = SubResource("Curve3D_x27p8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 rotation_mode = 0
 
-[node name="Enemy" parent="Enemy Paths/Path 1/PathFollow3D" instance=ExtResource("5_74iro")]
+[node name="Enemy" parent="Enemy Paths/Path 1/PathFollow3D" instance=ExtResource("7_38ck0")]
 
 [connection signal="body_entered" from="LevelPhysical/Lava" to="." method="lava_hit"]
+[connection signal="body_entered" from="LevelSwitcher" to="." method="change_level"]

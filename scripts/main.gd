@@ -5,8 +5,8 @@ extends Node3D
 @onready var player = $Player
 @onready var level
 @onready var first_level_name : String
-@onready var label = $CanvasLayer/Label
-@onready var health_bar = $"CanvasLayer/Health Bar"
+@onready var label = $HUD/coins_jumps
+@onready var health_bar = $"HUD/Health Bar"
 @onready var health_bar_progress = health_bar.get_node("Health Bar Progress")
 @onready var window = get_tree().get_root()
 
@@ -41,7 +41,7 @@ func _process(delta):
 	label.text = "Coins: " + str(player.coins)
 	label.text += "\nJumps: " + str(player.jumps)
 	
-	$CanvasLayer/curlevel.text = level.name
+	$HUD/curlevel.text = level.name
 
 func level_changed():
 	var debug_message : String = "Level changed successfully! "

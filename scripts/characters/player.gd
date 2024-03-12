@@ -6,6 +6,9 @@ const JUMP_VELOCITY = 4.5
 const SENS = 0.5
 const TENTH_LESS = 0.9
 const TENTH_MORE = 1.1
+const SPRING_LENGTH_AIMING = 2
+const SPRING_LENGTH_FREE = 10
+enum CAMERA_MODE {FREE_VIEW, AIMING, DOWN_SIGHTS}
 
 @onready var neck = $Neck
 @onready var camera = $Neck/SpringArm3D/Camera3D
@@ -21,12 +24,14 @@ var coins : int
 var boost : float
 var hp : float
 var max_hp : float
+var camera_mode : int
 
 func _ready():
 	jumps = 2
 	coins = 0
 	hp = 32
 	max_hp = 32
+	camera_mode = 0
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -62,7 +67,8 @@ func _physics_process(delta):
 		
 	if hp <= 0:
 		death()
-
+	
+		
 	move_and_slide()
 
 func _input(event):
@@ -73,11 +79,23 @@ func _input(event):
 	if event is InputEventMouseButton:
 		var spring = neck.get_node("SpringArm3D")
 		var clamp_length = spring.spring_length
-		if event.get_button_index() == MOUSE_BUTTON_WHEEL_UP:
-			clamp_length *= TENTH_LESS
-		elif event.get_button_index() == MOUSE_BUTTON_WHEEL_DOWN:
-			clamp_length *= TENTH_MORE
-		spring.spring_length = clamp(clamp_length, 2, 10)
+		match event.get_button_index():
+			MOUSE_BUTTON_WHEEL_UP:
+				clamp_length *= TENTH_LESS
+			MOUSE_BUTTON_WHEEL_DOWN:
+				clamp_length *= TENTH_MORE
+			MOUSE_BUTTON_MASK_RIGHT:
+				if camera_mode == CAMERA_MODE.FREE_VIEW:
+					camera_mode = CAMERA_MODE.AIMING
+					spring.spring_length = SPRING_LENGTH_AIMING
+					spring.position = Vector3(1, 0, 0)
+				elif camera_mode == CAMERA_MODE.AIMING:
+					camera_mode = CAMERA_MODE.FREE_VIEW
+					spring.spring_length = 3
+					spring.position = Vector3.ZERO
+		
+		if camera_mode == CAMERA_MODE.FREE_VIEW:
+			spring.spring_length = clamp(clamp_length, 2, SPRING_LENGTH_FREE)
 			
 func on_lava():
 	death()

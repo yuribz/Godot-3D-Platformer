@@ -2,7 +2,7 @@ extends Area3D
 
 
 
-@export var label_text : String
+@export_multiline var label_text : String
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = true

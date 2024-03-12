@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbbw7iq0ovq3w"]
+
+[ext_resource type="Script" path="res://scripts/level objects/level.gd" id="1_y4w7h"]
+[ext_resource type="Material" uid="uid://dbpbpcs1vrmu7" path="res://materials/ground_material.tres" id="2_01pph"]
+[ext_resource type="PlaneMesh" uid="uid://cbwxvsrx0lasf" path="res://assets/meshes/lava_mesh.tres" id="3_kjyla"]
+[ext_resource type="PackedScene" uid="uid://chrvhw5hfnrk3" path="res://scenes/health_pickup.tscn" id="4_jippg"]
+[ext_resource type="PackedScene" uid="uid://bvee6hqj0cct" path="res://scenes/level_switcher.tscn" id="5_16ul1"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0noml"]
+
+[node name="Level5" type="Node3D"]
+script = ExtResource("1_y4w7h")
+
+[node name="LevelPhysical" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.01483, -5.94605)
+size = Vector3(6.26855, 1, 15.1665)
+material = ExtResource("2_01pph")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.97, -5)
+operation = 2
+radius = 1.32023
+sides = 12
+material = ExtResource("2_01pph")
+
+[node name="Lava" type="Area3D" parent="LevelPhysical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.5115, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelPhysical/Lava"]
+shape = SubResource("WorldBoundaryShape3D_0noml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelPhysical/Lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.7143)
+mesh = ExtResource("3_kjyla")
+
+[node name="Coins" type="Node3D" parent="."]
+
+[node name="health_pickup" parent="Coins" instance=ExtResource("4_jippg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+health_bonus = 20
+
+[node name="LevelSwitcher" parent="." instance=ExtResource("5_16ul1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23668, -11.2211)
+
+[node name="Enemy Paths" type="Node3D" parent="."]
+
+[node name="Labels" type="Node3D" parent="."]
+
+[connection signal="body_entered" from="LevelPhysical/Lava" to="." method="lava_hit"]
