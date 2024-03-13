@@ -16,8 +16,9 @@ func _process(delta):
 	pass
 
 func lava_hit(body):
-	print("Lava!")
-	lava.emit()
+	if body.name == "Player":
+		print("Lava!")
+		lava.emit()
 	
 func change_level(body):
 	queue_free()
