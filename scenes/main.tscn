@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_k8h5c"]
 [ext_resource type="PackedScene" uid="uid://csoh6wrcikxfv" path="res://scenes/player.tscn" id="2_c1nqh"]
+[ext_resource type="PackedScene" uid="uid://chbraxppnyv4j" path="res://scenes/levels/level1.tscn" id="2_p780b"]
 [ext_resource type="Environment" uid="uid://cd3meimcqefx7" path="res://environments/underworld.tres" id="3_s04wm"]
-[ext_resource type="PackedScene" uid="uid://chbraxppnyv4j" path="res://scenes/levels/level1.tscn" id="4_e01yd"]
 [ext_resource type="Theme" uid="uid://cta28n0fo3d04" path="res://themes/health_bar.tres" id="4_f18aa"]
 [ext_resource type="AudioStream" uid="uid://k4jccp5nj22o" path="res://assets/sound/Monkeys Spinning Monkeys.mp3" id="5_fyacy"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_k8h5c")
-first_level = ExtResource("4_e01yd")
+first_level = ExtResource("2_p780b")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("3_s04wm")

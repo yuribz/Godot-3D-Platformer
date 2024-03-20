@@ -14,6 +14,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var bullets_shot : Array
 
 func _physics_process(delta):
+	
+	var bullet_remove_queue : Array
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -26,7 +28,10 @@ func _physics_process(delta):
 		
 		if bul.position.x > 20:
 			bul.queue_free()
-			bullets_shot.erase(bul)
+			bullet_remove_queue.append(bul)
+	
+	for bul in bullet_remove_queue:
+		bullets_shot.erase(bul)
 
 	move_and_slide()
 
